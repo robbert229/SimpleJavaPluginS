@@ -1,0 +1,7 @@
+core
+core.coreplugins
+core.plugin
+core.plugin.functions
+core.plugin.functions.tests
+core.plugin.info
+core.plugin.info.tests
