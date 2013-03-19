@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Plugin" default="Standard" basedir=".">
+	<!--	Deletes the core bin	-->
+	<target name="clean">
+		<delete dir="bin/core"/>
+		<delete dir="docs"/>
+	</target>
+	<!--	Compiles the Program	-->
+	<target name="build">
+		<mkdir dir="bin/core"/>
+		<javac srcdir="src" destdir="bin"/>
+	</target>
+	<!--	Creates a Jar	-->
+	<target name="jar">
+		<jar destfile="Jar/Plugin.jar" basedir="bin">
+			<manifest>
+				<attribute name="Main-Class" value="core.Launcher"/>
+			</manifest>
+		</jar>
+	</target>
+	<!--	Creates the JavaDoc	-->
+	<target name="doc" description="generate documentation">
+		<javadoc sourcepath="src" destdir="docs"/>
+	</target>
+	<!--	Runs the Program	-->
+	<target name="run">
+		<java jar="Jar/Plugin.jar" fork="true"/>
+	</target>
+	<!--	Main Run	-->
+	<target name="clean-build" depends="clean,build,jar"/>
+	<target name="dirty-build" depends="build,jar"/>
+	<target name="Standard" depends="build,jar,run"/>
+</project>
