@@ -44,4 +44,8 @@ public class Dependency implements Comparable<Dependency> {
 	public Version getVersion() {
 		return version;
 	}
+	@Override
+	public String toString(){
+		return name + " - " + version;
+	}
 }

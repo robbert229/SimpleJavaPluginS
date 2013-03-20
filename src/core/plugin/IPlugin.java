@@ -1,5 +1,7 @@
 package core.plugin;
 
+import java.util.HashMap;
+
 import core.plugin.functions.IFunction;
 import core.plugin.info.Dependency;
 import core.plugin.info.Version;
@@ -17,6 +19,10 @@ interface IPlugin {
 
 	public void setFunction(IFunction function, int i);
 
+	public void setDependencies(Dependency[] dependencies);
+	
+	public void setLoadedPluginMap(HashMap<String, Plugin> loadedPluginMap);
+	
 	public String getName();
 
 	public String getDescription();
@@ -27,9 +33,11 @@ interface IPlugin {
 
 	public IFunction getFunction(int i);
 	
+	public HashMap<String, Plugin> getLoadedPluginMap();
+	
 	public void onPreLoad();
 	
-	public void onLoad();
+	public void onLoad(HashMap<String, Plugin> loadedPluginMap);
 	
 	public void onStart();
 	
