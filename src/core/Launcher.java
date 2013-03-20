@@ -2,12 +2,10 @@ package core;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
+
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.security.CodeSource;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -17,7 +15,6 @@ import java.util.jar.JarFile;
 
 import core.plugin.Plugin;
 import core.plugin.info.Dependency;
-import core.plugin.info.Version;
 
 class Launcher {
 
@@ -82,7 +79,6 @@ class Launcher {
 		System.out.println("Completed Dependency Check");
 	}
 
-	@SuppressWarnings("unchecked")
 	private static void loadJars(){
 		jarList = new ArrayList<JarFile>();
 		urlList = new ArrayList<URL>();
@@ -106,6 +102,7 @@ class Launcher {
         cl = URLClassLoader.newInstance(urls);
 		System.out.println("Completed loading the jars");
 	}
+	@SuppressWarnings("unchecked")
 	public static void loadClasses(){
 		loadedPluginMap = new HashMap<String, Plugin>();
 		loadedPluginKeys = new ArrayList<String>();
@@ -144,58 +141,5 @@ class Launcher {
 			}
 		}
 		System.out.println("Completed loading the classes form the jars");
-		
-		/*try {
-			JarFile jarFile = new JarFile(pathToJar);
-			URL[] urls = {new URL("jar:file:" + pathToJar+"!/")};
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}*/
 	}
-	@SuppressWarnings("unchecked")
-	public static void loadPlugins(){
-		System.out.println("=========================================");
-
-		loadedPluginMap = new HashMap<String, Plugin>();
-		loadedPluginKeys = new ArrayList<String>();
-		loadedPluginDependency = new ArrayList<Dependency>();
-
-		cl = ClassLoader.getSystemClassLoader();
-		
-		
-		
-		System.out.println("Starting loadPlugins");
-
-		/*for (int i = 0; i < can.length; i++) {
-			System.out.println("    Attempting to load : " + can[i] + ".Core");
-			try {
-				// TODO Add in Class Loading
-				Class<? extends Plugin> plug = (Class<? extends Plugin>) cl.loadClass(can[i] + ".Core");
-				Constructor<? extends Plugin> ctor = plug.getConstructor();
-
-				Plugin eplug = ctor.newInstance();
-				String name = eplug.getName();
-				Version version = eplug.getVersion();
-
-				loadedPluginMap.put(name, eplug);
-				loadedPluginKeys.add(name);
-				loadedPluginDependency.add(new Dependency(name,version));
-
-				System.out.println("    "+name + ".onPreloaded()");
-				System.out.println("    Succesfully loaded : " + can[i] + ".Core");
-				eplug.onPreLoad();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("    Failed to load : " + can[i] + ".Core");
-			}
-		}
-		System.out.println("Completed loadPlugins");
-		*/
-	}
-
-
-
-
 }
