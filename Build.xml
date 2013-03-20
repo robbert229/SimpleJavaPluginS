@@ -10,11 +10,13 @@
 		<mkdir dir="bin/core"/>
 		<javac srcdir="src" destdir="bin"/>
 	</target>
-	<!--	Creates a Jar	-->
+	<!--	Creates a Jar	-->	
 	<target name="jar">
 		<jar destfile="Jar/Plugin.jar" basedir="bin">
 			<manifest>
 				<attribute name="Main-Class" value="core.Launcher"/>
+				<attribute name="Built-By" value="John Rowley"/>
+				<attribute name="Class-Path" value = "libs/"/>
 			</manifest>
 		</jar>
 	</target>
